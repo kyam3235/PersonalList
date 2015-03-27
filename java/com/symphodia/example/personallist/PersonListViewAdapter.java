@@ -61,18 +61,4 @@ public class PersonListViewAdapter extends ArrayAdapter<PersonListItem>{
         }
         super.addAll(itemList);
     }
-
-    //項目の追加を行う
-    public void add(String name, int age) {
-        PersonListItem item = new PersonListItem(name, age);
-        super.add(item);
-    }
-
-    //項目の削除を行う
-    public void remove(int index){
-        if(index < 0 || index >= getCount()){
-            return;
-        }
-        remove(getItem(index));
-    }
 }
