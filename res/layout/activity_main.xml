@@ -34,6 +34,18 @@
             android:layout_height="wrap_content"
             android:text="Add" />
 
+        <Button
+            android:id="@+id/btn_show_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ShowAll" />
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search" />
+
     </LinearLayout>
 
     <FrameLayout

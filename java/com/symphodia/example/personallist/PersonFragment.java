@@ -1,5 +1,6 @@
 package com.symphodia.example.personallist;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -51,5 +52,32 @@ public class PersonFragment extends ListFragment{
     public void add(String name, int age) {
         PersonListItem item = new PersonListItem(name, age);
         mAdapter.add(item);
+
+        DbControl dbControl = new DbControl((getActivity()));
+        dbControl.insert(item.getName(), item.getAge());
+    }
+
+    public void showAll() {
+        DbControl dbControl = new DbControl(getActivity());
+        Cursor cursor = dbControl.fetchAll();
+        addToListFromCursor(cursor);
+    }
+
+    public void searchByName(String name) {
+        DbControl dbControl = new DbControl(getActivity());
+        Cursor cursor = dbControl.fetchSelectBy(name);
+        addToListFromCursor(cursor);
+    }
+
+    private void addToListFromCursor(Cursor cursor){
+        cursor.moveToFirst();
+        for(int i = 0; i < cursor.getCount(); i++){
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(PersonTable.COLUMN_NAME));
+            int age = cursor.getInt(cursor.getColumnIndexOrThrow(PersonTable.COLUMN_AGE));
+            PersonListItem item = new PersonListItem(name, age);
+            mAdapter.add(item);
+            cursor.moveToNext();
+        }
+        cursor.close();
     }
 }

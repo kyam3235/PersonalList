@@ -43,6 +43,22 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
+
+        final Button btnShowAll = (Button) findViewById(R.id.btn_show_all);
+        btnShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPersonFragment.showAll();
+            }
+        });
+
+        final Button btnSearch = (Button) findViewById(R.id.btn_search);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPersonFragment.searchByName(etName.getText().toString());
+            }
+        });
     }
 
     @Override
